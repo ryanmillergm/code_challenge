@@ -4,6 +4,8 @@
 
 1) This requires Postgres (9.4+) & Rails(4.2+), so if you don't already have both installed, please install them.
 
+First I cloned down the repository and copied the street cafes 2015-16 csv into the project using Rails 5.2.4.1. Then I created a street_cafe model to represent the data with attributes of each column. I also added an additional column 'bench_seating' since one restaurant had additional information regarding bench seating. I did not validate bench_seating in the model due to not every restaurant having bench seating. I created a database using postgres 11.3, to meet the requirement of Postgres (9.4+) and ran the migration to create the initial table.
+
 2) Download the data file from: https://github.com/gospotcheck/ps-code-challenge/blob/master/Street%20Cafes%202015-16.csv
 
 3) Add a varchar column to the table called `category`.
