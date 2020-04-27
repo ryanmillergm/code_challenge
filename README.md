@@ -14,6 +14,7 @@ First I cloned down the repository and copied the street cafes 2015-16 csv into 
 
 3) Add a varchar column to the table called `category`.
 
+    In terminal I ran `rails g migration AddCategoryColumnToStreetCafe category:varchar` to add category column with a type of varchar to the street_cafes table.
 
 4) Create a view with the following columns[provide the view SQL]
     - post_code: The Post Code
