@@ -35,13 +35,13 @@ First I cloned down the repository and copied the street cafes 2015-16 csv into 
 
     `
     == 20200429171537 StreetCafeReportByPostCodeView: migrating ===================
-    -- execute("          CREATE VIEW street_cafes_report_by_post_code AS\n            SELECT\n              post_code,\n              COUNT(*) AS total_plac
-    es,\n              SUM(number_of_chairs) AS total_chairs,\n              ROUND((SUM(number_of_chairs) * 1.0 / (SELECT SUM(cafes.number_of_chairs)* 1.0 FR
-    OM street_cafes cafes) * 100), 2) AS chair_pct,\n              (SELECT restaurant_name FROM street_cafes sc WHERE sc.post_code = post_code ORDER BY numbe
-    r_of_chairs desc LIMIT 1) AS place_with_max_chairs,\n              MAX(number_of_chairs) as max_chairs\n            FROM\n              street_cafes\n
-             GROUP BY\n              post_code\n            ORDER BY\n              post_code\n")
-       -> 0.0094s
-    == 20200429171537 StreetCafeReportByPostCodeView: migrated (0.0096s) ==========
+    -- execute("          CREATE VIEW street_cafes_report_by_post_code AS\n            SELECT\n              post_code,\n              COUNT(*) AS total_places
+    ,\n              SUM(number_of_chairs) AS total_chairs,\n              ROUND((SUM(number_of_chairs) * 1.0 / (SELECT SUM(cafes.number_of_chairs)* 1.0 FROM s
+    treet_cafes cafes) * 100), 2) AS chair_pct,\n              (SELECT restaurant_name FROM street_cafes sc WHERE sc.post_code = street.post_code ORDER BY numb
+    er_of_chairs desc LIMIT 1) AS place_with_max_chairs,\n              MAX(number_of_chairs) as max_chairs\n            FROM\n              street_cafes stree
+    t\n            GROUP BY\n              post_code\n            ORDER BY\n              post_code\n")
+       -> 0.0187s
+    == 20200429171537 StreetCafeReportByPostCodeView: migrated (0.0188s) ==========
     `
 
     To make the query accessible by ActiveRecord, I then created `street_cafe_report_by_post_code.rb` model and updated the file to:
