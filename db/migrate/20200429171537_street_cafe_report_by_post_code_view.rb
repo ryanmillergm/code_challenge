@@ -9,10 +9,10 @@ class StreetCafeReportByPostCodeView < ActiveRecord::Migration[5.2]
               COUNT(*) AS total_places,
               SUM(number_of_chairs) AS total_chairs,
               ROUND((SUM(number_of_chairs) * 1.0 / (SELECT SUM(cafes.number_of_chairs)* 1.0 FROM street_cafes cafes) * 100), 2) AS chair_pct,
-              (SELECT restaurant_name FROM street_cafes sc WHERE sc.post_code = post_code ORDER BY number_of_chairs desc LIMIT 1) AS place_with_max_chairs,
+              (SELECT restaurant_name FROM street_cafes sc WHERE sc.post_code = street.post_code ORDER BY number_of_chairs desc LIMIT 1) AS place_with_max_chairs,
               MAX(number_of_chairs) as max_chairs
             FROM
-              street_cafes
+              street_cafes street
             GROUP BY
               post_code
             ORDER BY
