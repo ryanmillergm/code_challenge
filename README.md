@@ -24,7 +24,6 @@ First I cloned down the repository and copied the street cafes 2015-16 csv into 
     - place_with_max_chairs: The name of the place with the most chairs in that Post Code
     -max_chairs: The number of chairs at the place_with_max_chairs
 
-    *Please also include a brief description of how you verified #4*
 
     To get this data, I created a rake task to import the csv data into the database. Since the data was missing a header for a column, I added bench_seating header during the rake task. I also had to add `encoding: 'ISO-8859-1'` in the options for the special character accent on cafe.`
 
@@ -87,9 +86,12 @@ First I cloned down the repository and copied the street cafes 2015-16 csv into 
 
     ![Cafe Report](./public/images/street_cafe_report_by_post_code_view.png)
 
+    *Please also include a brief description of how you verified #4*
+
     ##Testing
 
-    Manually, I could test in rails dbconsole:
+    I created a spec for the SQL to test and validate queries were true. See `./spec/models/street_cafe_report_by_post_code_spec.rb`
+    I also did manual testing. I can test in rails dbconsole:
 
     `SELECT SUM(street_cafes_report_by_post_code.chair_pct) FROM street_cafes_report_by_post_code;`
 
