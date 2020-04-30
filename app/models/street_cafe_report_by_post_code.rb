@@ -1,9 +1,5 @@
 class StreetCafeReportByPostCode < ApplicationRecord
-  self.primary_key = "id"
-
-  def archive!
-    update_attribute :archived, true
-  end
+  self.primary_key = :id
 
   def readonly?
     true
