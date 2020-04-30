@@ -58,6 +58,12 @@ RSpec.describe StreetCafeReportByPostCode, type: :model do
       it 'sum of all chair percentages from all post codes is 100%' do
         expect(StreetCafeReportByPostCode.sum(:chair_pct).to_i).to eq(100)
       end
+
+      it 'returns street cafe with most chairs in a post code' do
+        expect(StreetCafeReportByPostCode.find_by(post_code: "LS1 2AN").place_with_max_chairs).to eq(StreetCafe.where(post_code: "LS1 2AN").max_by { |cafe| cafe.number_of_chairs }.restaurant_name)
+        expect(StreetCafeReportByPostCode.find_by(post_code: "LS2 6AA").place_with_max_chairs).to eq(StreetCafe.where(post_code: "LS2 6AA").max_by { |cafe| cafe.number_of_chairs }.restaurant_name)
+        expect(StreetCafeReportByPostCode.find_by(post_code: "LS3 3AW").place_with_max_chairs).to eq(StreetCafe.where(post_code: "LS3 3AW").max_by { |cafe| cafe.number_of_chairs }.restaurant_name)
+      end
     end
   end
 end
