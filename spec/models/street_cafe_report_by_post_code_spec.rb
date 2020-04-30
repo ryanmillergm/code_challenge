@@ -16,6 +16,10 @@ RSpec.describe StreetCafeReportByPostCode, type: :model do
     let!(:sc9) { StreetCafe.create!(restaurant_name: "Street Cafe 9", street_address: "9th st", post_code: "LS3 3AW", number_of_chairs: 30) }
     let!(:sc10) { StreetCafe.create!(restaurant_name: "Street Cafe 10", street_address: "10th st", post_code: "LS3 3AW", number_of_chairs: 5) }
 
+    it 'is readonly' do
+      expect { treetCafeReportByPostCode.all[0].update!(post_code: "something else")}.to raise_error
+      expect(StreetCafeReportByPostCode.all[0].readonly?).to be true
+    end
 
     describe 'validates SQL query data' do
 
