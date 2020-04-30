@@ -87,6 +87,26 @@ First I cloned down the repository and copied the street cafes 2015-16 csv into 
 
     ![Cafe Report](./public/images/street_cafe_report_by_post_code_view.png)
 
+    ##Testing
+
+    Manually, I could test in rails dbconsole:
+
+    `SELECT SUM(street_cafes_report_by_post_code.chair_pct) FROM street_cafes_report_by_post_code;`
+
+    or in rails c using ActiveRecord:
+
+    `StreetCafeReportByPostCode.sum(:chair_pct).to_i`
+
+
+    In order to test this with RSpec, I ran into a problem; In test environment, rails didn't know have a table for StreetCafeReportByPostCode. To resolve this issue I needed to switch my schema to SQL format by adding the following line to my application.rb:
+
+    `config.active_record.schema_format = :sql`
+
+    Then in rspec I could test:
+
+    `expect(StreetCafeReportByPostCode.sum(:chair_pct).to_i).to eq(100)`
+
+
 
 5) Write a Rails script to categorize the cafes and write the result to the category according to the rules:[provide the script]
     - If the Post Code is of the LS1 prefix type:
