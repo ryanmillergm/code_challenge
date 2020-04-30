@@ -16,14 +16,19 @@ RSpec.describe StreetCafeReportByPostCode, type: :model do
     let!(:sc9) { StreetCafe.create!(restaurant_name: "Street Cafe 9", street_address: "9th st", post_code: "LS3 3AW", number_of_chairs: 30) }
     let!(:sc10) { StreetCafe.create!(restaurant_name: "Street Cafe 10", street_address: "10th st", post_code: "LS3 3AW", number_of_chairs: 5) }
 
-    describe 'sum of all percentages from all post codes is 100%' do
-      it 'chair percentage from all post codes sum equals 100' do
+
+    describe 'validates SQL query data' do
+
+      it 'groups cafes by post code' do
+        binding.pry
+        expect(StreetCafeReportByPostCode.count).to eq(3)
+        expect(StreetCafeReportByPostCode.first.post_code).to eq("LS1 2AN")
+      end
+
+
+      it 'sum of all chair percentages from all post codes is 100%' do
         expect(StreetCafeReportByPostCode.sum(:chair_pct).to_i).to eq(100)
       end
     end
-  end
-
-  describe 'instance methods' do
-
   end
 end

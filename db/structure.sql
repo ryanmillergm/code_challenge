@@ -75,20 +75,20 @@ ALTER SEQUENCE public.street_cafes_id_seq OWNED BY public.street_cafes.id;
 --
 
 CREATE VIEW public.street_cafes_report_by_post_code AS
- SELECT street_cafes.post_code,
+ SELECT street.post_code,
     count(*) AS total_places,
-    sum(street_cafes.number_of_chairs) AS total_chairs,
-    round(((((sum(street_cafes.number_of_chairs))::numeric * 1.0) / ( SELECT ((sum(cafes.number_of_chairs))::numeric * 1.0)
+    sum(street.number_of_chairs) AS total_chairs,
+    round(((((sum(street.number_of_chairs))::numeric * 1.0) / ( SELECT ((sum(cafes.number_of_chairs))::numeric * 1.0)
            FROM public.street_cafes cafes)) * (100)::numeric), 2) AS chair_pct,
     ( SELECT sc.restaurant_name
            FROM public.street_cafes sc
-          WHERE ((sc.post_code)::text = (sc.post_code)::text)
+          WHERE ((sc.post_code)::text = (street.post_code)::text)
           ORDER BY sc.number_of_chairs DESC
          LIMIT 1) AS place_with_max_chairs,
-    max(street_cafes.number_of_chairs) AS max_chairs
-   FROM public.street_cafes
-  GROUP BY street_cafes.post_code
-  ORDER BY street_cafes.post_code;
+    max(street.number_of_chairs) AS max_chairs
+   FROM public.street_cafes street
+  GROUP BY street.post_code
+  ORDER BY street.post_code;
 
 
 --
