@@ -1,5 +1,5 @@
 class StreetCafeReportByPostCode < ApplicationRecord
-  self.primary_key = "id"
+  self.primary_key = :id
 
   def readonly?
     true
