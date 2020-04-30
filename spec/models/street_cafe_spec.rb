@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe SteetCafe, type: :model do
+RSpec.describe StreetCafe, type: :model do
   describe 'validations' do
     it { should validate_presence_of :restaurant_name }
     it { should validate_presence_of :street_address }
