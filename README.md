@@ -47,11 +47,7 @@ First I cloned down the repository and copied the street cafes 2015-16 csv into 
 
     `
     class StreetCafeReportByPostCode < ApplicationRecord
-      self.primary_key = "id"
-
-      def archive!
-        update_attribute :archived, true
-      end
+      self.primary_key = :id
 
       def readonly?
         true
