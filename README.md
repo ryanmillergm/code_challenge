@@ -106,6 +106,15 @@ First I cloned down the repository and copied the street cafes 2015-16 csv into 
 
     `expect(StreetCafeReportByPostCode.sum(:chair_pct).to_i).to eq(100)`
 
+    SQL Views do not have primary keys, so unfortunately you cannot call .first, .last, or .find because ActiveRecord expects to query based on your model's primary key. With some queries, ou can get around these issues by setting the primary key column on your Rails model like so:
+
+    `class People < ActiveRecord::Base
+      self.primary_key = :my_unique_identifier_field
+    end`
+
+    Since my query is a group by, I decided to just access in such a way: `array[0]`
+
+
 
 
 5) Write a Rails script to categorize the cafes and write the result to the category according to the rules:[provide the script]
