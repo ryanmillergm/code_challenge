@@ -20,11 +20,40 @@ RSpec.describe StreetCafeReportByPostCode, type: :model do
     describe 'validates SQL query data' do
 
       it 'groups cafes by post code' do
-        binding.pry
         expect(StreetCafeReportByPostCode.count).to eq(3)
-        expect(StreetCafeReportByPostCode.first.post_code).to eq("LS1 2AN")
+        expect(StreetCafeReportByPostCode.find_by(post_code: "LS1 2AN").total_places).to eq(3)
+        expect(StreetCafeReportByPostCode.find_by(post_code: "LS2 6AA").total_places).to eq(4)
+        expect(StreetCafeReportByPostCode.find_by(post_code: "LS3 3AW").total_places).to eq(3)
+        expect(StreetCafeReportByPostCode.all[0].post_code).to eq("LS1 2AN")
+        expect(StreetCafeReportByPostCode.all[1].post_code).to eq("LS2 6AA")
+        expect(StreetCafeReportByPostCode.all[2].post_code).to eq("LS3 3AW")
       end
 
+      it 'total places of all post codes to sum up to total street cafes' do
+        expect(StreetCafeReportByPostCode.sum(:total_places).to_i).to eq(StreetCafe.count)
+      end
+
+      it 'total chairs in a post code' do
+        expect(StreetCafeReportByPostCode.find_by(post_code: "LS1 2AN").total_chairs).to eq(StreetCafe.where(post_code: "LS1 2AN").sum(:number_of_chairs))
+        expect(StreetCafeReportByPostCode.find_by(post_code: "LS2 6AA").total_chairs).to eq(StreetCafe.where(post_code: "LS2 6AA").sum(:number_of_chairs))
+        expect(StreetCafeReportByPostCode.find_by(post_code: "LS3 3AW").total_chairs).to eq(StreetCafe.where(post_code: "LS3 3AW").sum(:number_of_chairs))
+      end
+
+      it 'total chairs in post code versus total chairs of all post codes by percentage' do
+        all_post_code_total_chairs = StreetCafe.sum(:number_of_chairs)
+
+        ls1_total_chairs = StreetCafe.where(post_code: "LS1 2AN").sum(:number_of_chairs)
+        ls2_total_chairs = StreetCafe.where(post_code: "LS2 6AA").sum(:number_of_chairs)
+        ls3_total_chairs = StreetCafe.where(post_code: "LS3 3AW").sum(:number_of_chairs)
+
+        ls1_post_code_percentage = ((ls1_total_chairs.to_d / all_post_code_total_chairs) * 100).round(2)
+        ls2_post_code_percentage = ((ls2_total_chairs.to_d / all_post_code_total_chairs) * 100).round(2)
+        ls3_post_code_percentage = ((ls3_total_chairs.to_d / all_post_code_total_chairs) * 100).round(2)
+
+        expect(StreetCafeReportByPostCode.find_by(post_code: "LS1 2AN").chair_pct).to eq(ls1_post_code_percentage)
+        expect(StreetCafeReportByPostCode.find_by(post_code: "LS2 6AA").chair_pct).to eq(ls2_post_code_percentage)
+        expect(StreetCafeReportByPostCode.find_by(post_code: "LS3 3AW").chair_pct).to eq(ls3_post_code_percentage)
+      end
 
       it 'sum of all chair percentages from all post codes is 100%' do
         expect(StreetCafeReportByPostCode.sum(:chair_pct).to_i).to eq(100)
