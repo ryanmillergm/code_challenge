@@ -46,13 +46,16 @@ First I cloned down the repository and copied the street cafes 2015-16 csv into 
     To make the query accessible by ActiveRecord, I then created `street_cafe_report_by_post_code.rb` model and updated the file to:
 
     `
+    
     class StreetCafeReportByPostCode < ApplicationRecord
+    
       self.primary_key = :id
 
       def readonly?
         true
       end
     end
+    
     `
 
     I can now access this in the rails console with ActiveRecord by running in the console:
