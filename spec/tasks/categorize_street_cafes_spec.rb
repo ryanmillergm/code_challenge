@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'rake'
 
-Rails.application.load_tasks
+Rails.application.load_tasks if Rake::Task.tasks.empty?
 
 RSpec.describe "Rake Tasks" do
   let!(:sc1) { StreetCafe.create!(restaurant_name: "Street Cafe 1", street_address: "1st st", post_code: "LS1 2AN", number_of_chairs: 25) }

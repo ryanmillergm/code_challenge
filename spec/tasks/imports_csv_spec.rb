@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'rake'
 
-Rails.application.load_tasks
+Rails.application.load_tasks if Rake::Task.tasks.empty?
 
 RSpec.describe "Rake Tasks" do
   describe 'import:street_cafes' do
