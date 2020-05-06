@@ -11,7 +11,7 @@ class StreetCafe < ApplicationRecord
     elsif number_of_chairs >= 10 && number_of_chairs < 100
       update!(category: "#{prefix} medium" )
     else
-      update!(category: "#{prefix} small" )
+      update!(category: "#{prefix} large" )
     end
   end
 
@@ -19,10 +19,10 @@ class StreetCafe < ApplicationRecord
     cafe = self
     position = cafes_ordered_by_chairs_in_ls2.index(cafe) + 1
     percentile  = (position.to_f / cafes_ordered_by_chairs_in_ls2.count) * 100
-
+    
     if percentile < 50
       update!(category: "#{prefix} small" )
-    elsif percentile > 50
+    elsif percentile >= 50
       update!(category: "#{prefix} large" )
     end
   end
