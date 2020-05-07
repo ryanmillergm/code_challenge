@@ -137,6 +137,14 @@ First I cloned down the repository and copied the street cafes 2015-16 csv into 
     - total_places: The number of places in that category
     - total_chairs: The total chairs in that category
 
+    SQL query: `SELECT * FROM street_cafes_report_by_category`
+
+    ![Cafe Category Report](./public/images/street_cafe_report_by_category.png)
+
+    ActiveRecord query: `StreetCafeReportByCategory.all`
+
+    ![Cafe Category Report in Active Record](./public/images/active_record_street_cafe_by_category.png)
+
 7) Write a script in rails to:
     - For street_cafes categorized as small, write a script that exports their data to a csv and deletes the records
     - For street cafes categorized as medium or large, write a script that concatenates the category name to the beginning of the name and writes it back to the name column
