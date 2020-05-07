@@ -132,6 +132,11 @@ First I cloned down the repository and copied the street cafes 2015-16 csv into 
 
     *Please share any tests you wrote for #5*
 
+    Initially, I created a rake task that called street cafe class methods to categorize depending on prefix. I then decided to organize the logic into it's own class, CafeCategorizer.rb. I also benchmarked the two rake tasks and found CafeCategorizer to be faster as long as I queried the 'ls2' in the rake task and passed that variable to the CafeCategorizer instance method categorize_cafe (then I wouldn't be making a query for each time I categorized a cafe with a prefix of 'ls2'. Also, this keeps options open for future iterations to pass other prefixes into the method).
+
+    ![Benchmarked methods](./public/images/rake categories benchmark task.png)
+    ![Benchmark](./public/images/rake categories benchmark.png)
+
 6) Write a custom view to aggregate the categories [provide view SQL AND the results of this view]
     - category: The category column
     - total_places: The number of places in that category
