@@ -47,7 +47,7 @@ First I cloned down the repository and copied the street cafes 2015-16 csv into 
 
     `
     class StreetCafeReportByPostCode < ApplicationRecord
-    
+
       self.primary_key = :id
 
       def readonly?
@@ -130,8 +130,8 @@ First I cloned down the repository and copied the street cafes 2015-16 csv into 
 
     Initially, I created a rake task that called street cafe class methods to categorize depending on prefix. I then decided to organize the logic into it's own class, CafeCategorizer.rb. I also benchmarked the two rake tasks and found CafeCategorizer to be faster as long as I queried the 'ls2' in the rake task and passed that variable to the CafeCategorizer instance method categorize_cafe (then I wouldn't be making a query for each time I categorized a cafe with a prefix of 'ls2'. Also, this keeps options open for future iterations to pass other prefixes into the method).
 
-    ![Benchmarked methods](./public/images/rake categories benchmark task.png)
-    ![Benchmark](./public/images/rake categories benchmark.png)
+    ![Benchmarked methods](./public/images/rake_categories_benchmark_task.png)
+    ![Benchmark](./public/images/rake_categories_benchmark.png)
 
 6) Write a custom view to aggregate the categories [provide view SQL AND the results of this view]
     - category: The category column
@@ -140,7 +140,7 @@ First I cloned down the repository and copied the street cafes 2015-16 csv into 
 
     SQL query: `SELECT * FROM street_cafes_report_by_category`
 
-    ![Cafe Category Report](./public/images/street_cafe_report_by_category.png)
+    ![Cafe Category Report](./public/images/rake_categories_benchmark.png)
 
     ActiveRecord query: `StreetCafeReportByCategory.all`
 
