@@ -71,6 +71,19 @@ ALTER SEQUENCE public.street_cafes_id_seq OWNED BY public.street_cafes.id;
 
 
 --
+-- Name: street_cafes_report_by_category; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.street_cafes_report_by_category AS
+ SELECT street_cafes.category,
+    count(street_cafes.id) AS total_places,
+    sum(street_cafes.number_of_chairs) AS total_chairs
+   FROM public.street_cafes
+  GROUP BY street_cafes.category
+  ORDER BY street_cafes.category;
+
+
+--
 -- Name: street_cafes_report_by_post_code; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -131,6 +144,7 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20200211233444'),
 ('20200427204743'),
-('20200429171537');
+('20200429171537'),
+('20200507173740');
 
 
