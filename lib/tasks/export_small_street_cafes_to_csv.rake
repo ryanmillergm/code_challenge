@@ -4,7 +4,7 @@ namespace :export do
 
       require 'csv'
 
-      file = "#{Rails.root}/public/street_cafes.csv"
+      file = "#{Rails.root}/public/small_street_cafes.csv"
 
       small_cafes = StreetCafe.cafes_by_size('small')
 

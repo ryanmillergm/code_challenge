@@ -152,6 +152,10 @@ First I cloned down the repository and copied the street cafes 2015-16 csv into 
     - For street_cafes categorized as small, write a script that exports their data to a csv and deletes the records
     - For street cafes categorized as medium or large, write a script that concatenates the category name to the beginning of the name and writes it back to the name column
 
+    Adds an `export_small_street_cafes_to_csv.rake` task to export small cafes csv and delete records. I decided to keep this external from the class because this could be extremely sensitive and you would not want anyone to accidentally delete records. This would create a csv file located in the public directory as `small_street_cafes.csv`.
+
+    I created a simple rake task `concatenate_cafe_category.rake` and used class methods to handle concatenating category into name.
+
     *Please share any tests you wrote for #7*
 
 8) Show your work and check your email for submission instructions.
