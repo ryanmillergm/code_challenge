@@ -134,6 +134,8 @@ First I cloned down the repository and copied the street cafes 2015-16 csv into 
     *Please share any tests you wrote for #5*
 
     I wrote unit test for categorizing a cafe with RSpec.
+    
+    https://github.com/ryanmillergm/practice_challenge/blob/master/spec/tasks/categorize_street_cafes_spec.rb
 
 6) Write a custom view to aggregate the categories [provide view SQL AND the results of this view]
     - category: The category column
@@ -157,6 +159,12 @@ First I cloned down the repository and copied the street cafes 2015-16 csv into 
     I created a simple rake task `concatenate_cafe_category.rake` and used class methods to handle concatenating category into name.
 
     *Please share any tests you wrote for #7*
+    
+    https://github.com/ryanmillergm/practice_challenge/blob/master/spec/tasks/exports_small_cafes_to_csv_spec.rb
+    
+    https://github.com/ryanmillergm/practice_challenge/blob/master/spec/tasks/concatenate_cafe_category_spec.rake
+    
+    https://github.com/ryanmillergm/practice_challenge/blob/master/spec/models/street_cafe_spec.rb
 
 8) Show your work and check your email for submission instructions.
 
