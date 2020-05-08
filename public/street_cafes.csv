@@ -1,0 +1,3 @@
+id,restaurant_name,street_address,post_code,number_of_chairs,bench_seating,created_at,updated_at,category
+4,Street Cafe 4,4th st,LS1 2AN,5,,2020-05-07 23:42:36 UTC,2020-05-07 23:42:36 UTC,ls1 small
+5,Street Cafe 5,5th st,LS2 2AN,5,,2020-05-07 23:42:36 UTC,2020-05-07 23:42:36 UTC,ls2 small

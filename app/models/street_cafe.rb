@@ -4,4 +4,8 @@ class StreetCafe < ApplicationRecord
                         :post_code,
                         :number_of_chairs
 
+  def self.cafes_by_size(size)
+    where("category LIKE ?", "%#{size}")
+  end
+
 end
