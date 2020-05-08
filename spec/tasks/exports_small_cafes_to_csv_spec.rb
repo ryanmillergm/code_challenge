@@ -14,8 +14,8 @@ RSpec.describe 'exports:street_cafes' do
   it 'creates a csv file with small cafes and deletes records' do
     Rake::Task['export:street_cafes'].execute
 
-    csv = File.read("#{Rails.root}/public/street_cafes.csv")
-    test_csv = File.read("#{Rails.root}/public/test_street_cafes.csv")
+    csv = File.read("#{Rails.root}/public/small_street_cafes.csv")
+    test_csv = File.read("#{Rails.root}/public/test_small_street_cafes.csv")
 
     expect(csv).to eq(test_csv)
   end
