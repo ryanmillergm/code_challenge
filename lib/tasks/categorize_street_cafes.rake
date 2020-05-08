@@ -1,5 +1,5 @@
 namespace :categorize do
-  desc "Import data from Street Cafes 2015-16 CSV file"
+  desc "categorizes street cafes by number of chairs and percentile"
     task street_cafes: :environment do
 
       cafes = StreetCafe.all
