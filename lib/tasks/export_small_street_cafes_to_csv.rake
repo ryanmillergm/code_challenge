@@ -1,5 +1,5 @@
 namespace :export do
-  desc "Import data from Street Cafes 2015-16 CSV file"
+  desc "exports small cafes to csv and deletes record"
     task street_cafes: :environment do
 
       require 'csv'
