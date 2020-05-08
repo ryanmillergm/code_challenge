@@ -21,5 +21,13 @@ RSpec.describe "Rake Tasks" do
 
       expect(csv).to eq(test_csv)
     end
+
+    it 'prints no small cafes if none available' do
+      Rake::Task['export:street_cafes'].execute
+
+      expect do
+        Rake::Task['export:street_cafes'].execute
+      end.to output("\"There are no small cafes.\"\n").to_stdout
+    end
   end
 end
