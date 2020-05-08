@@ -6,7 +6,7 @@ namespace :export do
 
       file = "#{Rails.root}/public/street_cafes.csv"
 
-      small_cafes = StreetCafe.all.where("category LIKE ?", "%small");0
+      small_cafes = StreetCafe.cafes_by_size('small')
 
       if  small_cafes.empty?
         p 'There are no small cafes.'
